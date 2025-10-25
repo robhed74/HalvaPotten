@@ -2,11 +2,11 @@ name: Update data.json (every 5 min)
 
 on:
   schedule:
-    - cron: "*/5 * * * *"   # var 5:e minut (UTC)
-  workflow_dispatch:
+    - cron: "*/5 * * * *"     # var 5:e minut (UTC)
+  workflow_dispatch:          # så du kan köra manuellt från Actions-fliken
 
 permissions:
-  contents: write
+  contents: write             # krävs för att committa/pusha data.json
 
 concurrency:
   group: halvapotten-update
@@ -15,6 +15,8 @@ concurrency:
 jobs:
   scrape:
     runs-on: ubuntu-latest
+    timeout-minutes: 15
+
     steps:
       - name: Check out repo
         uses: actions/checkout@v4
@@ -22,20 +24,16 @@ jobs:
       - name: Set up Node
         uses: actions/setup-node@v4
         with:
-          node-version: '20'
-          # OBS: ingen cache här -> inga klagomål om lockfil
+          node-version: "20"  # ingen cache -> inget krav på package-lock
 
-      - name: Install dependencies (ci if lock exists, else install)
+      - name: Install dependencies (no local lockfile required)
         run: |
-          if [ -f package-lock.json ]; then
-            npm ci
-          else
-            npm install
-          fi
+          npm install
           npx playwright install --with-deps chromium
 
       - name: Run scraper
-        run: npm run scrape
+        run: |
+          npm run scrape
 
       - name: Commit & push if data.json changed
         run: |
@@ -48,5 +46,3 @@ jobs:
           fi
           git commit -m "Update data.json [skip ci]"
           git push
-
-
