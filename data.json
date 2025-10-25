@@ -1,46 +1,46 @@
 [
   {
     "club": "Luleå HF",
-    "amount": 40480,
+    "amount": 40910,
     "currency": "SEK",
     "url": "https://clubs.clubmate.se/luleahockey/",
-    "fetched_at": "2025-10-25T12:34:49.148Z",
+    "fetched_at": "2025-10-25T12:52:47.443Z",
     "debug": {
       "strategy": "hard:h6.font-bold.animate-pulse:has-text(\" kr\")",
-      "raw": "40 480 kr"
+      "raw": "40 910 kr"
     }
   },
   {
     "club": "Brynäs IF",
-    "amount": 38540,
+    "amount": 51820,
     "currency": "SEK",
     "url": "https://clubs.clubmate.se/brynas/",
-    "fetched_at": "2025-10-25T12:34:52.022Z",
+    "fetched_at": "2025-10-25T12:52:50.431Z",
     "debug": {
       "strategy": "near-label-follow",
-      "raw": "Brynäs IF - Färjestad BKDragning sker i tredje perioden25 Oct13:15SHLSponsrat avErlandssonsAktuell vinstsumma38 540 kr"
+      "raw": "Brynäs IF - Färjestad BKDragning sker i tredje perioden25 Oct13:15SHLSponsrat avErlandssonsAktuell vinstsumma51 820 kr"
     }
   },
   {
     "club": "Djurgårdens IF",
-    "amount": 2288,
+    "amount": 2338,
     "currency": "SEK",
     "url": "https://clubs.clubmate.se/difhockey/",
-    "fetched_at": "2025-10-25T12:34:56.430Z",
+    "fetched_at": "2025-10-25T12:52:53.514Z",
     "debug": {
-      "strategy": "retry-near-label",
-      "raw": "Aktuell vinstsumma2 288 kr"
+      "strategy": "near-label-follow",
+      "raw": "Aktuell vinstsumma2 338 kr"
     }
   },
   {
     "club": "Färjestad BK",
-    "amount": 1230,
+    "amount": 1260,
     "currency": "SEK",
     "url": "https://clubs.clubmate.se/farjestadbk/",
-    "fetched_at": "2025-10-25T12:35:00.248Z",
+    "fetched_at": "2025-10-25T12:52:56.525Z",
     "debug": {
-      "strategy": "retry-near-label",
-      "raw": "Färjestad BK - Timrå IKDragning sker under 3:e perioden28 Oct18:00Aktuell vinstsumma1 230 kr"
+      "strategy": "near-label-follow",
+      "raw": "Färjestad BK - Timrå IKDragning sker under 3:e perioden28 Oct18:00Aktuell vinstsumma1 260 kr"
     }
   },
   {
@@ -48,9 +48,9 @@
     "amount": 710,
     "currency": "SEK",
     "url": "https://clubs.clubmate.se/frolundahockey/",
-    "fetched_at": "2025-10-25T12:35:04.321Z",
+    "fetched_at": "2025-10-25T12:52:59.373Z",
     "debug": {
-      "strategy": "retry-near-label",
+      "strategy": "near-label-follow",
       "raw": "25 Oct16:00Aktuell vinstsumma710 kr"
     }
   },
@@ -59,7 +59,7 @@
     "amount": 660,
     "currency": "SEK",
     "url": "https://clubs.clubmate.se/hv71/",
-    "fetched_at": "2025-10-25T12:35:07.243Z",
+    "fetched_at": "2025-10-25T12:53:02.469Z",
     "debug": {
       "strategy": "near-label-follow",
       "raw": "Aktuell vinstsumma660 kr"
@@ -67,35 +67,35 @@
   },
   {
     "club": "Leksands IF",
-    "amount": 29810,
+    "amount": 30760,
     "currency": "SEK",
     "url": "https://clubs.clubmate.se/leksandsif/",
-    "fetched_at": "2025-10-25T12:35:10.217Z",
+    "fetched_at": "2025-10-25T12:53:05.500Z",
     "debug": {
       "strategy": "near-label-follow",
-      "raw": "Aktuell vinstsumma29 810 kr"
+      "raw": "Aktuell vinstsumma30 760 kr"
     }
   },
   {
     "club": "Linköping HC",
-    "amount": 14050,
+    "amount": 18820,
     "currency": "SEK",
     "url": "https://clubs.clubmate.se/lhc/",
-    "fetched_at": "2025-10-25T12:35:13.046Z",
+    "fetched_at": "2025-10-25T12:53:08.575Z",
     "debug": {
       "strategy": "near-label-follow",
-      "raw": "Aktuell vinstsumma14 050 kr"
+      "raw": "Aktuell vinstsumma18 820 kr"
     }
   },
   {
     "club": "IF Malmö Redhawks",
-    "amount": 10840,
+    "amount": 14830,
     "currency": "SEK",
     "url": "https://clubs.clubmate.se/malmoredhawks/",
-    "fetched_at": "2025-10-25T12:35:16.097Z",
+    "fetched_at": "2025-10-25T12:53:11.237Z",
     "debug": {
       "strategy": "near-label-follow",
-      "raw": "Malmö Redhawks - Vaxjö Lakers25 Oct13:15Aktuell vinstsumma10 840 kr"
+      "raw": "Malmö Redhawks - Vaxjö Lakers25 Oct13:15Aktuell vinstsumma14 830 kr"
     }
   },
   {
@@ -103,21 +103,21 @@
     "amount": 290,
     "currency": "SEK",
     "url": "https://clubs.clubmate.se/orebrohockey/",
-    "fetched_at": "2025-10-25T12:35:18.845Z",
+    "fetched_at": "2025-10-25T12:53:14.353Z",
     "debug": {
-      "strategy": "selector:h6.font-bold:has-text(\" kr\")",
-      "raw": "290 kr"
+      "strategy": "near-label-follow",
+      "raw": "Örebro Hockey vs BrynäsTävla om Halva Potten samtidigt som du stöttar vårt U16 och Örebro Stadsmission.28 Oct18:00Sponsrat avSäkraAktuell vinstsumma290 kr"
     }
   },
   {
     "club": "Rögle BK",
-    "amount": 590,
+    "amount": 640,
     "currency": "SEK",
     "url": "https://clubs.clubmate.se/roglebk/",
-    "fetched_at": "2025-10-25T12:35:22.315Z",
+    "fetched_at": "2025-10-25T12:53:17.048Z",
     "debug": {
       "strategy": "hard:h6.font-bold:has-text(\" kr\")",
-      "raw": "590 kr"
+      "raw": "640 kr"
     }
   },
   {
@@ -125,7 +125,7 @@
     "amount": 1620,
     "currency": "SEK",
     "url": "https://clubs.clubmate.se/skellefteaaik/",
-    "fetched_at": "2025-10-25T12:35:25.205Z",
+    "fetched_at": "2025-10-25T12:53:20.258Z",
     "debug": {
       "strategy": "near-label-follow",
       "raw": "Skellefteå AIK - Luleå HFDragning sker under tredje perioden28 Oct18:00Aktuell vinstsumma1 620 kr"
@@ -133,13 +133,13 @@
   },
   {
     "club": "Timrå IK",
-    "amount": 14700,
+    "amount": 17140,
     "currency": "SEK",
     "url": "https://clubs.clubmate.se/timraik/",
-    "fetched_at": "2025-10-25T12:35:27.929Z",
+    "fetched_at": "2025-10-25T12:53:23.603Z",
     "debug": {
       "strategy": "near-label-follow",
-      "raw": "Timrå IK - Örebro HK25 Oct16:00Sponsrat avSelånger LastmaskinerAktuell vinstsumma14 700 kr"
+      "raw": "Timrå IK - Örebro HK25 Oct16:00Sponsrat avSelånger LastmaskinerAktuell vinstsumma17 140 kr"
     }
   },
   {
@@ -147,7 +147,7 @@
     "amount": 640,
     "currency": "SEK",
     "url": "https://clubs.clubmate.se/vaxjolakers/",
-    "fetched_at": "2025-10-25T12:35:30.505Z",
+    "fetched_at": "2025-10-25T12:53:26.453Z",
     "debug": {
       "strategy": "near-label-follow",
       "raw": "Växjö Lakers - Djurgårdens IFDragning sker under 3:e perioden.28 Oct18:00Aktuell vinstsumma640 kr"
