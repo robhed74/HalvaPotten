@@ -3,7 +3,7 @@ name: Update data.json (every 5 min)
 on:
   schedule:
     - cron: "*/5 * * * *"   # var 5:e minut (UTC)
-  workflow_dispatch:        # möjlighet att köra manuellt
+  workflow_dispatch:
 
 permissions:
   contents: write
@@ -23,11 +23,15 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '20'
-          cache: 'npm'
+          # OBS: ingen cache här -> inga klagomål om lockfil
 
-      - name: Install dependencies
+      - name: Install dependencies (ci if lock exists, else install)
         run: |
-          npm ci
+          if [ -f package-lock.json ]; then
+            npm ci
+          else
+            npm install
+          fi
           npx playwright install --with-deps chromium
 
       - name: Run scraper
@@ -44,3 +48,4 @@ jobs:
           fi
           git commit -m "Update data.json [skip ci]"
           git push
+
