@@ -65,7 +65,7 @@ function fmt(n){ return n==null ? '—' : new Intl.NumberFormat('sv-SE').format(
 function set(id,v){ document.getElementById(id).textContent = v; }
 
 async function fetchJson(){
-  const res = await fetch('data.json?_=' + Date.now(), { cache: 'no-store' });
+  const res = await fetch('./data.json?_=' + Date.now(), { cache: 'no-store' });
   if (!res.ok) throw new Error('Kunde inte läsa data.json ('+res.status+')');
   set('loaded', new Date().toLocaleTimeString('sv-SE'));
   return res.json();
