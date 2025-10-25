@@ -24,10 +24,12 @@
   .bad{background:#c00}
   .flash{animation:flash 600ms ease}
   @keyframes flash{from{background:#e7ffe7} to{background:transparent}}
+  .legend{margin-top:12px;font-size:.9rem;color:#444}
+  .legend span{display:inline-flex;align-items:center;margin-right:12px}
 </style>
 </head>
 <body>
-  <h1><span id="mainIndicator" class="indicator ok"></span>Halva Potten – aktuella vinstsummor (SHL)</h1>
+  <h1><span id="mainIndicator" class="indicator ok" title="Grönt = data uppdaterad senaste 10 minuterna"></span>Halva Potten – aktuella vinstsummor (SHL)</h1>
   <div class="meta">Senast laddad: <span id="loaded">–</span> | Senaste fetched_at: <span id="latest">–</span></div>
   <div class="controls">
     <button id="reload">Läs in data</button>
@@ -46,6 +48,13 @@
     <thead><tr><th>Klubb</th><th class="amt">Aktuell vinstsumma</th></tr></thead>
     <tbody></tbody>
   </table>
+
+  <div class="legend">
+    <strong>Färgförklaring:</strong>
+    <span><span class="indicator ok" title="Data uppdaterad i senaste körningen"></span>Aktuell data</span>
+    <span><span class="indicator warn" title="Oförändrad data från tidigare körning"></span>Oförändrad data</span>
+    <span><span class="indicator bad" title="Data saknas eller har misslyckats flera gånger"></span>Fel eller saknas</span>
+  </div>
 
 <script>
 const LULEA = 'Luleå HF';
@@ -72,15 +81,23 @@ function updateMainIndicator(latestTime){
   const now = Date.now();
   const diffMin = (now - latestTime)/60000;
   const el = document.getElementById('mainIndicator');
-  el.className = 'indicator ' + statusClass(diffMin);
+  const cls = statusClass(diffMin);
+  el.className = 'indicator ' + cls;
+  if (cls==='ok') el.title='Grönt = data uppdaterad senaste 10 minuterna';
+  else if (cls==='warn') el.title='Orange = data äldre än 10 min men yngre än 30 min';
+  else el.title='Rött = data äldre än 30 min';
 }
 
 function render(data){
+  // Sortering: Luleå HF först, därefter efter högsta vinstsumma
   const arr = (data || []).slice().sort((a,b)=>{
     if (a.club===LULEA) return -1;
-    if (b.club===LULEA) return  1;
-    return a.club.localeCompare(b.club,'sv');
+    if (b.club===LULEA) return 1;
+    const aAmt = a.amount ?? 0;
+    const bAmt = b.amount ?? 0;
+    return bAmt - aAmt; // högsta först
   });
+
   const tb = document.querySelector('#tbl tbody'); tb.innerHTML = '';
   let newest = 0;
   const newPrev = {};
@@ -91,66 +108,16 @@ function render(data){
     const diffMin = (Date.now() - ts)/60000;
     const clubPrev = previousData[row.club];
     let color = 'ok';
+    let tooltip = 'Aktuell data';
 
-    if (row.amount==null) color = 'bad';
-    else if (clubPrev && clubPrev.amount === row.amount) color = 'warn';
-    else if (clubPrev && clubPrev.errorCount >= 2) color = 'bad';
-    else color = statusClass(diffMin);
+    if (row.amount==null){ color='bad'; tooltip='Fel eller saknas'; }
+    else if (clubPrev && clubPrev.amount === row.amount){ color='warn'; tooltip='Oförändrad data'; }
+    else if (clubPrev && clubPrev.errorCount >= 2){ color='bad'; tooltip='Upprepade fel'; }
+    else { color = statusClass(diffMin); tooltip = 'Aktuell data'; }
 
     newPrev[row.club] = { amount: row.amount, errorCount: row.error ? (clubPrev?.errorCount||0)+1 : 0 };
 
     const tr = document.createElement('tr');
-    const tdC = document.createElement('td');
-    const tdA = document.createElement('td');
-    tdC.className = 'club' + (row.club===LULEA ? ' lulea' : '');
-    tdC.innerHTML = `<span class="indicator ${color}"></span><a href="${row.url}" target="_blank" rel="noopener">${row.club}</a>` + (row.error ? ` <span style="color:#b00;font-size:.9rem">(fel att läsa)</span>` : '');
-    tdA.className = 'amt'; tdA.textContent = fmt(row.amount);
-    tr.appendChild(tdC); tr.appendChild(tdA); tb.appendChild(tr);
-  }
+    const tdC = d
 
-  previousData = newPrev;
-  set('latest', newest ? new Date(newest).toLocaleString('sv-SE') : '–');
-  updateMainIndicator(newest);
-}
-
-async function refresh(){
-  try{
-    document.getElementById('status').textContent = 'Uppdaterar…';
-    const data = await fetchJson();
-    const json = JSON.stringify(data);
-    const changed = (json !== lastJson);
-    render(data);
-    if (changed){
-      lastJson = json;
-      document.body.classList.remove('flash'); void document.body.offsetWidth; document.body.classList.add('flash');
-    }
-    document.getElementById('status').textContent = changed ? 'Ny data' : 'Oförändrat';
-    setTimeout(()=>document.getElementById('status').textContent='',1200);
-  }catch(e){
-    document.getElementById('status').textContent = 'Fel: ' + e.message;
-  }
-}
-
-document.getElementById('reload').addEventListener('click', refresh);
-let timer=null;
-document.getElementById('auto').addEventListener('change', e=>{
-  if (timer) clearInterval(timer);
-  const secs = +e.target.value; if (secs>0) timer = setInterval(refresh, secs*1000);
-});
-document.getElementById('auto').dispatchEvent(new Event('change'));
-refresh();
-
-document.getElementById('copy').addEventListener('click', async ()=>{
-  const rows = [...document.querySelectorAll('#tbl tbody tr')].map(tr=>{
-    const club = tr.querySelector('a').innerText;
-    const amt  = tr.children[1].innerText;
-    const b = club===LULEA ? '**' : '';
-    return `${b}${club}${b}: ${amt}`;
-  });
-  await navigator.clipboard.writeText(rows.join('\n'));
-  const el = document.getElementById('status'); el.textContent = 'Kopierat!'; setTimeout(()=>el.textContent='',1200);
-});
-</script>
-</body>
-</html>
 
