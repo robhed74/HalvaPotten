@@ -1,4 +1,4 @@
-// scrape.mjs — skrapar 50/50-potterna och skriver data.json
+// scrape.mjs — skrapar 50/50-potterna och skriver data.json (Actions-ready, robust mot småbelopp)
 import { chromium } from 'playwright';
 import fs from 'fs/promises';
 
@@ -19,16 +19,19 @@ const CLUBS = [
   { name: 'Växjö Lakers HC', url: 'https://clubs.clubmate.se/vaxjolakers/' }
 ];
 
-// Hårda selektorer för specialfall
+// Hårda selektorer för kända sidor (prioriteras först)
+// För Luleå pekar vi direkt på pulserande pottraden.
 const SELECTORS = {
+  'https://clubs.clubmate.se/luleahockey/': 'h6.font-bold.animate-pulse:has-text(" kr")',
   'https://clubs.clubmate.se/roglebk/': 'h6.font-bold:has-text(" kr")'
 };
 
 const BAD_WORDS = [
   'presentkort','voucher','shop','shopen','butik','biljett','biljetter',
-  'rabatt','t-shirt','hoodie','kampanj','erbjudande','+'
+  'rabatt','t-shirt','hoodie','kampanj','erbjudande','+','sms','köp','avgift'
 ];
 
+const MIN_VALID = 50; // välj aldrig under detta
 const sleep = (ms) => new Promise(r => setTimeout(r, ms));
 
 const parseAmount = (txt) => {
@@ -47,10 +50,10 @@ async function getByHardSelector(page, url) {
   const sel = SELECTORS[url];
   if (!sel) return null;
   try {
-    await page.waitForSelector(sel, { timeout: 8000 });
+    await page.waitForSelector(sel, { timeout: 9000 });
     const t = (await page.textContent(sel) || '').replace(/\u00A0/g,' ').trim();
     const n = parseAmount(t);
-    if (n != null) return { text: t, amount: n, strategy: `hard:${sel}` };
+    if (n != null && n >= MIN_VALID) return { text: t, amount: n, strategy: `hard:${sel}` };
   } catch {}
   return null;
 }
@@ -79,21 +82,15 @@ async function getByLabelDOM(page) {
   });
 }
 
+// Välj bästa kandidat, men ALDRIG under MIN_VALID
 function chooseBestAmount(texts, strategyTag) {
   const good = [];
   for (const s of (texts || [])) {
     if (isBadText(s)) continue;
     const n = parseAmount(s);
     if (n == null) continue;
-    if (n < 50) continue; // filtrera typ "+5 kr"
+    if (n < MIN_VALID) continue; // aldrig småbelopp
     good.push({ text: s, amount: n });
-  }
-  if (!good.length) {
-    for (const s of (texts || [])) {
-      if (isBadText(s)) continue;
-      const n = parseAmount(s);
-      if (n != null) good.push({ text: s, amount: n });
-    }
   }
   if (!good.length) return null;
   good.sort((a,b) => b.amount - a.amount);
@@ -113,7 +110,7 @@ async function getByGenericSelectors(page) {
     if (!el) continue;
     const t = (await el.textContent() || '').replace(/\u00A0/g,' ').trim();
     const n = parseAmount(t);
-    if (n != null && !isBadText(t) && n >= 50) return { text: t, amount: n, strategy: `selector:${sel}` };
+    if (n != null && !isBadText(t) && n >= MIN_VALID) return { text: t, amount: n, strategy: `selector:${sel}` };
   }
   return null;
 }
@@ -132,7 +129,7 @@ async function getBodyMax(page) {
       const v = parseFloat(num);
       return Number.isFinite(v) ? v : null;
     })();
-    if (n != null && n > bestAmt) { bestAmt = n; best = s; }
+    if (n != null && n >= MIN_VALID && n > bestAmt) { bestAmt = n; best = s; }
   }
   if (bestAmt === -Infinity) return null;
   return { text: best, amount: Math.round(bestAmt), strategy: 'body-max' };
@@ -142,30 +139,36 @@ async function extractPot(page, url) {
   await page.waitForLoadState('domcontentloaded');
   await sleep(1500);
 
+  // 0) Hård selektor först
   const hard = await getByHardSelector(page, url);
   if (hard) return hard;
 
+  // 1) Vänta tills sidan sannolikt renderat “kr” eller labeln
   try {
     await page.waitForFunction(() => {
       const els = Array.from(document.querySelectorAll('p,div,span,h5,h6'));
       const hasLabel = els.some(el => /aktuell\s+vinstsumma/i.test((el.textContent||'')));
-      const hasKr = /kr\b/i.test(document.body.innerText || '');
+      const hasKr = /kr\b/i.test((document.body.innerText||''));
       return hasLabel || hasKr;
-    }, { timeout: 8000 });
+    }, { timeout: 9000 });
   } catch {}
 
+  // 2) Nära labeln
   const near = await getByLabelDOM(page);
   if (near?.texts?.length) {
     const chosen = chooseBestAmount(near.texts, 'near-label-follow');
     if (chosen) return chosen;
   }
 
+  // 3) Generiska selektorer
   const gen = await getByGenericSelectors(page);
   if (gen) return gen;
 
+  // 4) Hela body, välj största rimliga belopp
   const body = await getBodyMax(page);
   if (body) return body;
 
+  // 5) Sista retry
   await sleep(1200);
   const near2 = await getByLabelDOM(page);
   if (near2?.texts?.length) {
@@ -214,12 +217,14 @@ async function run() {
   console.log('\nKlart. Skrev data.json med', out.length, 'rader.');
 }
 
+// ====== FAIL-SAFE ======
 (async () => {
   try {
     await run();
   } catch (err) {
     console.error('Kritiskt fel i run():', err);
     try { await fs.writeFile('data.json', '[]', 'utf8'); } catch {}
-    process.exit(0); // fail-safe: Actions blir inte röd
+    process.exit(0);
   }
 })();
+
