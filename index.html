@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="sv">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Halva Potten – aktuella vinstsummor (SHL)</title>
+<style>
+  body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial;margin:24px;max-width:900px}
+  h1{margin:0 0 6px}
+  .meta{color:#555;margin-bottom:16px}
+  .controls{display:flex;gap:8px;align-items:center;margin-bottom:12px;flex-wrap:wrap}
+  button,select{padding:.45rem .7rem;font-size:.95rem}
+  table{width:100%;border-collapse:collapse}
+  th,td{padding:.6rem .7rem;border-bottom:1px solid #e6e6e6}
+  th{text-align:left;background:#fafafa;font-weight:600}
+  tr:hover td{background:#fcfcfc}
+  .amt{font-variant-numeric:tabular-nums;text-align:right}
+  .club a{text-decoration:none;color:inherit}
+  .lulea{font-weight:800}
+  .status{margin-left:auto;color:#555}
+  .err{color:#b00;font-size:.9rem}
+</style>
+</head>
+<body>
+  <h1>Halva Potten – aktuella vinstsummor (SHL)</h1>
+  <div class="meta" id="meta">Laddar…</div>
+
+  <div class="controls">
+    <button id="reload">Läs in data</button>
+    <label>Auto-uppdatera:
+      <select id="auto">
+        <option value="0">Av</option>
+        <option value="60">Var 1 min</option>
+        <option value="300" selected>Var 5 min</option>
+        <option value="1800">Var 30 min</option>
+        <option value="3600">Var 1 tim</option>
+      </select>
+    </label>
+    <button id="copy">Kopiera som lista</button>
+    <span class="status" id="status"></span>
+  </div>
+
+  <table id="tbl">
+    <thead>
+      <tr>
+        <th>Klubb</th>
+        <th class="amt">Aktuell vinstsumma</th>
+      </tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+
+<script>
+const LULEA = 'Luleå HF';
+
+function fmt(n){ return n==null ? '—' : new Intl.NumberFormat('sv-SE').format(n)+' kr'; }
+
+async function loadData(){
+  const res = await fetch('data.json?_=' + Date.now());
+  if (!res.ok) throw new Error('Kunde inte läsa data.json ('+res.status+')');
+  return res.json();
+}
+
+function render(data){
+  // Luleå först, övriga alfabetiskt
+  const arr = data.slice().sort((a,b)=>{
+    if (a.club===LULEA) return -1;
+    if (b.club===LULEA) return  1;
+    return a.club.localeCompare(b.club,'sv');
+  });
+
+  const tb = document.querySelector('#tbl tbody');
+  tb.innerHTML = '';
+  let newest = 0;
+
+  arr.forEach(row=>{
+    const tr  = document.createElement('tr');
+    const tdC = document.createElement('td');
+    const tdA = document.createElement('td');
+
+    tdC.className = 'club' + (row.club===LULEA ? ' lulea' : '');
+    tdC.innerHTML = `<a href="${row.url}" target="_blank" rel="noopener">${row.club}</a>` + (row.error ? ` <span class="err">(fel att läsa)</span>` : '');
+
+    tdA.className = 'amt';
+    tdA.textContent = fmt(row.amount);
+
+    tr.appendChild(tdC); tr.appendChild(tdA);
+    tb.appendChild(tr);
+
+    const ts = Date.parse(row.fetched_at);
+    if (!isNaN(ts)) newest = Math.max(newest, ts);
+  });
+
+  const meta = document.getElementById('meta');
+  meta.textContent = newest ? 'Senast uppdaterad: ' + new Date(newest).toLocaleString('sv-SE') : '—';
+}
+
+async function refresh(){
+  try{
+    document.getElementById('status').textContent = 'Uppdaterar…';
+    const data = await loadData();
+    render(data);
+    document.getElementById('status').textContent = 'OK';
+    setTimeout(()=>document.getElementById('status').textContent='',1200);
+  }catch(e){
+    document.getElementById('status').textContent = 'Fel: ' + e.message;
+  }
+}
+
+document.getElementById('reload').addEventListener('click', refresh);
+
+let timer=null;
+document.getElementById('auto').addEventListener('change', e=>{
+  if (timer) clearInterval(timer);
+  const secs = parseInt(e.target.value,10);
+  if (secs>0) timer = setInterval(refresh, secs*1000);
+});
+document.getElementById('auto').dispatchEvent(new Event('change'));
+
+document.getElementById('copy').addEventListener('click', async ()=>{
+  const rows = [...document.querySelectorAll('#tbl tbody tr')].map(tr=>{
+    const club = tr.children[0].innerText.replace(/\s*\(fel att läsa\)\s*/,'');
+    const amt  = tr.children[1].innerText;
+    const bold = club===LULEA ? '**' : '';
+    return `${bold}${club}${bold}: ${amt}`;
+  });
+  await navigator.clipboard.writeText(rows.join('\n'));
+  const el = document.getElementById('status');
+  el.textContent = 'Kopierat!';
+  setTimeout(()=>el.textContent='',1200);
+});
+
+// första inläsningen
+refresh();
+</script>
+</body>
+</html>
