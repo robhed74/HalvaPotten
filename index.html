@@ -6,7 +6,7 @@
 <title>Halva Potten – aktuella vinstsummor (SHL)</title>
 <style>
   body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial;margin:24px;max-width:900px}
-  h1{margin:0 0 6px}
+  h1{margin:0 0 4px}
   .meta{color:#555;margin-bottom:10px}
   .controls{display:flex;gap:8px;align-items:center;margin-bottom:12px;flex-wrap:wrap}
   button,select{padding:.45rem .7rem;font-size:.95rem}
@@ -18,12 +18,16 @@
   .club a{text-decoration:none;color:inherit}
   .lulea{font-weight:800}
   .status{margin-left:auto;color:#555}
+  .indicator{display:inline-block;width:12px;height:12px;border-radius:50%;margin-right:6px;vertical-align:middle}
+  .ok{background:#0a0}
+  .warn{background:#e6b800}
+  .bad{background:#c00}
   .flash{animation:flash 600ms ease}
   @keyframes flash{from{background:#e7ffe7} to{background:transparent}}
 </style>
 </head>
 <body>
-  <h1>Halva Potten – aktuella vinstsummor (SHL)</h1>
+  <h1><span id="mainIndicator" class="indicator ok"></span>Halva Potten – aktuella vinstsummor (SHL)</h1>
   <div class="meta">Senast laddad: <span id="loaded">–</span> | Senaste fetched_at: <span id="latest">–</span></div>
   <div class="controls">
     <button id="reload">Läs in data</button>
@@ -46,6 +50,7 @@
 <script>
 const LULEA = 'Luleå HF';
 let lastJson = '';
+let previousData = {};
 
 function fmt(n){ return n==null ? '—' : new Intl.NumberFormat('sv-SE').format(n)+' kr'; }
 function set(id,v){ document.getElementById(id).textContent = v; }
@@ -57,6 +62,19 @@ async function fetchJson(){
   return res.json();
 }
 
+function statusClass(ageMinutes){
+  if (ageMinutes <= 10) return 'ok';
+  if (ageMinutes <= 30) return 'warn';
+  return 'bad';
+}
+
+function updateMainIndicator(latestTime){
+  const now = Date.now();
+  const diffMin = (now - latestTime)/60000;
+  const el = document.getElementById('mainIndicator');
+  el.className = 'indicator ' + statusClass(diffMin);
+}
+
 function render(data){
   const arr = (data || []).slice().sort((a,b)=>{
     if (a.club===LULEA) return -1;
@@ -65,17 +83,34 @@ function render(data){
   });
   const tb = document.querySelector('#tbl tbody'); tb.innerHTML = '';
   let newest = 0;
+  const newPrev = {};
+
   for (const row of arr){
+    const ts = Date.parse(row.fetched_at||'');
+    if (!isNaN(ts)) newest = Math.max(newest, ts);
+    const diffMin = (Date.now() - ts)/60000;
+    const clubPrev = previousData[row.club];
+    let color = 'ok';
+
+    if (row.amount==null) color = 'bad';
+    else if (clubPrev && clubPrev.amount === row.amount) color = 'warn';
+    else if (clubPrev && clubPrev.errorCount >= 2) color = 'bad';
+    else color = statusClass(diffMin);
+
+    newPrev[row.club] = { amount: row.amount, errorCount: row.error ? (clubPrev?.errorCount||0)+1 : 0 };
+
     const tr = document.createElement('tr');
     const tdC = document.createElement('td');
     const tdA = document.createElement('td');
     tdC.className = 'club' + (row.club===LULEA ? ' lulea' : '');
-    tdC.innerHTML = `<a href="${row.url}" target="_blank" rel="noopener">${row.club}</a>` + (row.error ? ` <span style="color:#b00;font-size:.9rem">(fel att läsa)</span>` : '');
+    tdC.innerHTML = `<span class="indicator ${color}"></span><a href="${row.url}" target="_blank" rel="noopener">${row.club}</a>` + (row.error ? ` <span style="color:#b00;font-size:.9rem">(fel att läsa)</span>` : '');
     tdA.className = 'amt'; tdA.textContent = fmt(row.amount);
     tr.appendChild(tdC); tr.appendChild(tdA); tb.appendChild(tr);
-    const ts = Date.parse(row.fetched_at||''); if (!isNaN(ts)) newest = Math.max(newest, ts);
   }
+
+  previousData = newPrev;
   set('latest', newest ? new Date(newest).toLocaleString('sv-SE') : '–');
+  updateMainIndicator(newest);
 }
 
 async function refresh(){
@@ -107,7 +142,7 @@ refresh();
 
 document.getElementById('copy').addEventListener('click', async ()=>{
   const rows = [...document.querySelectorAll('#tbl tbody tr')].map(tr=>{
-    const club = tr.children[0].innerText.replace(/\s*\(fel att läsa\)\s*/,'');
+    const club = tr.querySelector('a').innerText;
     const amt  = tr.children[1].innerText;
     const b = club===LULEA ? '**' : '';
     return `${b}${club}${b}: ${amt}`;
@@ -118,3 +153,4 @@ document.getElementById('copy').addEventListener('click', async ()=>{
 </script>
 </body>
 </html>
+
