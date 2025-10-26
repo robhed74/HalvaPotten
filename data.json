@@ -4,7 +4,7 @@
     "amount": 50000,
     "currency": "SEK",
     "url": "https://clubs.clubmate.se/luleahockey/",
-    "fetched_at": "2025-10-26T05:45:27.111Z",
+    "fetched_at": "2025-10-26T05:54:48.075Z",
     "debug": {
       "strategy": "body-max",
       "raw": "00\n50000 kr"
@@ -15,7 +15,7 @@
     "amount": 280,
     "currency": "SEK",
     "url": "https://clubs.clubmate.se/brynas/",
-    "fetched_at": "2025-10-26T05:45:30.456Z",
+    "fetched_at": "2025-10-26T05:54:51.353Z",
     "debug": {
       "strategy": "hard:.animate-pulse:has-text(\" kr\")",
       "raw": "280 kr"
@@ -26,7 +26,7 @@
     "amount": 5325,
     "currency": "SEK",
     "url": "https://clubs.clubmate.se/difhockey/",
-    "fetched_at": "2025-10-26T05:45:33.708Z",
+    "fetched_at": "2025-10-26T05:54:53.815Z",
     "debug": {
       "strategy": "pulse",
       "raw": "5 325 kr"
@@ -37,7 +37,7 @@
     "amount": 1420,
     "currency": "SEK",
     "url": "https://clubs.clubmate.se/farjestadbk/",
-    "fetched_at": "2025-10-26T05:45:36.717Z",
+    "fetched_at": "2025-10-26T05:54:56.377Z",
     "debug": {
       "strategy": "pulse",
       "raw": "1 420 kr"
@@ -48,7 +48,7 @@
     "amount": 230,
     "currency": "SEK",
     "url": "https://clubs.clubmate.se/frolundahockey/",
-    "fetched_at": "2025-10-26T05:45:40.563Z",
+    "fetched_at": "2025-10-26T05:54:59.601Z",
     "debug": {
       "strategy": "pulse",
       "raw": "230 kr"
@@ -59,7 +59,7 @@
     "amount": 710,
     "currency": "SEK",
     "url": "https://clubs.clubmate.se/hv71/",
-    "fetched_at": "2025-10-26T05:45:43.364Z",
+    "fetched_at": "2025-10-26T05:55:02.135Z",
     "debug": {
       "strategy": "pulse",
       "raw": "710 kr"
@@ -70,7 +70,7 @@
     "amount": 910,
     "currency": "SEK",
     "url": "https://clubs.clubmate.se/leksandsif/",
-    "fetched_at": "2025-10-26T05:45:47.445Z",
+    "fetched_at": "2025-10-26T05:55:05.207Z",
     "debug": {
       "strategy": "pulse",
       "raw": "910 kr"
@@ -81,7 +81,7 @@
     "amount": 440,
     "currency": "SEK",
     "url": "https://clubs.clubmate.se/lhc/",
-    "fetched_at": "2025-10-26T05:45:50.499Z",
+    "fetched_at": "2025-10-26T05:55:08.068Z",
     "debug": {
       "strategy": "pulse",
       "raw": "440 kr"
@@ -92,7 +92,7 @@
     "amount": 150,
     "currency": "SEK",
     "url": "https://clubs.clubmate.se/malmoredhawks/",
-    "fetched_at": "2025-10-26T05:45:54.376Z",
+    "fetched_at": "2025-10-26T05:55:10.756Z",
     "debug": {
       "strategy": "pulse",
       "raw": "150 kr"
@@ -103,7 +103,7 @@
     "amount": 350,
     "currency": "SEK",
     "url": "https://clubs.clubmate.se/orebrohockey/",
-    "fetched_at": "2025-10-26T05:45:57.673Z",
+    "fetched_at": "2025-10-26T05:55:13.515Z",
     "debug": {
       "strategy": "pulse",
       "raw": "350 kr"
@@ -114,7 +114,7 @@
     "amount": 720,
     "currency": "SEK",
     "url": "https://clubs.clubmate.se/roglebk/",
-    "fetched_at": "2025-10-26T05:46:00.786Z",
+    "fetched_at": "2025-10-26T05:55:16.190Z",
     "debug": {
       "strategy": "hard:h6.font-bold:has-text(\" kr\")",
       "raw": "720 kr"
@@ -125,7 +125,7 @@
     "amount": 1680,
     "currency": "SEK",
     "url": "https://clubs.clubmate.se/skellefteaaik/",
-    "fetched_at": "2025-10-26T05:46:03.319Z",
+    "fetched_at": "2025-10-26T05:55:19.063Z",
     "debug": {
       "strategy": "pulse",
       "raw": "1 680 kr"
@@ -136,7 +136,7 @@
     "amount": 350,
     "currency": "SEK",
     "url": "https://clubs.clubmate.se/timraik/",
-    "fetched_at": "2025-10-26T05:46:06.315Z",
+    "fetched_at": "2025-10-26T05:55:22.100Z",
     "debug": {
       "strategy": "pulse",
       "raw": "350 kr"
@@ -147,7 +147,7 @@
     "amount": 690,
     "currency": "SEK",
     "url": "https://clubs.clubmate.se/vaxjolakers/",
-    "fetched_at": "2025-10-26T05:46:09.029Z",
+    "fetched_at": "2025-10-26T05:55:25.357Z",
     "debug": {
       "strategy": "pulse",
       "raw": "690 kr"
