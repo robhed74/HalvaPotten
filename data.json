@@ -4,7 +4,7 @@
     "amount": 1900,
     "currency": "SEK",
     "url": "https://clubs.clubmate.se/luleahockey/",
-    "fetched_at": "2025-10-29T08:57:34.296Z",
+    "fetched_at": "2025-10-29T09:00:36.155Z",
     "debug": {
       "strategy": "hard:h6.font-bold.animate-pulse:has-text(\" kr\")",
       "raw": "1 900 kr"
@@ -15,7 +15,7 @@
     "amount": 680,
     "currency": "SEK",
     "url": "https://clubs.clubmate.se/brynas/",
-    "fetched_at": "2025-10-29T08:57:37.253Z",
+    "fetched_at": "2025-10-29T09:00:39.581Z",
     "debug": {
       "strategy": "hard:.animate-pulse:has-text(\" kr\")",
       "raw": "680 kr"
@@ -26,7 +26,7 @@
     "amount": 313,
     "currency": "SEK",
     "url": "https://clubs.clubmate.se/difhockey/",
-    "fetched_at": "2025-10-29T08:57:40.684Z",
+    "fetched_at": "2025-10-29T09:00:42.459Z",
     "debug": {
       "strategy": "pulse",
       "raw": "313 kr"
@@ -34,13 +34,13 @@
   },
   {
     "club": "Färjestad BK",
-    "amount": 740,
+    "amount": 760,
     "currency": "SEK",
     "url": "https://clubs.clubmate.se/farjestadbk/",
-    "fetched_at": "2025-10-29T08:57:43.574Z",
+    "fetched_at": "2025-10-29T09:00:46.998Z",
     "debug": {
       "strategy": "pulse",
-      "raw": "740 kr"
+      "raw": "760 kr"
     }
   },
   {
@@ -48,7 +48,7 @@
     "amount": 240,
     "currency": "SEK",
     "url": "https://clubs.clubmate.se/frolundahockey/",
-    "fetched_at": "2025-10-29T08:57:46.414Z",
+    "fetched_at": "2025-10-29T09:00:50.485Z",
     "debug": {
       "strategy": "pulse",
       "raw": "240 kr"
@@ -59,7 +59,7 @@
     "amount": 8180,
     "currency": "SEK",
     "url": "https://clubs.clubmate.se/hv71/",
-    "fetched_at": "2025-10-29T08:57:49.762Z",
+    "fetched_at": "2025-10-29T09:00:53.436Z",
     "debug": {
       "strategy": "body-max",
       "raw": "00\n8180 kr"
@@ -70,7 +70,7 @@
     "amount": 1770,
     "currency": "SEK",
     "url": "https://clubs.clubmate.se/leksandsif/",
-    "fetched_at": "2025-10-29T08:57:52.916Z",
+    "fetched_at": "2025-10-29T09:00:56.081Z",
     "debug": {
       "strategy": "pulse",
       "raw": "1 770 kr"
@@ -81,7 +81,7 @@
     "amount": 5100,
     "currency": "SEK",
     "url": "https://clubs.clubmate.se/lhc/",
-    "fetched_at": "2025-10-29T08:57:56.154Z",
+    "fetched_at": "2025-10-29T09:00:59.091Z",
     "debug": {
       "strategy": "body-max",
       "raw": "5\n100 kr"
@@ -92,7 +92,7 @@
     "amount": 500,
     "currency": "SEK",
     "url": "https://clubs.clubmate.se/malmoredhawks/",
-    "fetched_at": "2025-10-29T08:57:58.994Z",
+    "fetched_at": "2025-10-29T09:01:03.234Z",
     "debug": {
       "strategy": "pulse",
       "raw": "500 kr"
@@ -103,7 +103,7 @@
     "amount": 360,
     "currency": "SEK",
     "url": "https://clubs.clubmate.se/orebrohockey/",
-    "fetched_at": "2025-10-29T08:58:01.903Z",
+    "fetched_at": "2025-10-29T09:01:06.792Z",
     "debug": {
       "strategy": "pulse",
       "raw": "360 kr"
@@ -114,7 +114,7 @@
     "amount": 660,
     "currency": "SEK",
     "url": "https://clubs.clubmate.se/roglebk/",
-    "fetched_at": "2025-10-29T08:58:04.974Z",
+    "fetched_at": "2025-10-29T09:01:10.078Z",
     "debug": {
       "strategy": "hard:h6.font-bold:has-text(\" kr\")",
       "raw": "660 kr"
@@ -125,7 +125,7 @@
     "amount": 270,
     "currency": "SEK",
     "url": "https://clubs.clubmate.se/skellefteaaik/",
-    "fetched_at": "2025-10-29T08:58:07.922Z",
+    "fetched_at": "2025-10-29T09:01:14.071Z",
     "debug": {
       "strategy": "pulse",
       "raw": "270 kr"
@@ -136,7 +136,7 @@
     "amount": 4290,
     "currency": "SEK",
     "url": "https://clubs.clubmate.se/timraik/",
-    "fetched_at": "2025-10-29T08:58:11.049Z",
+    "fetched_at": "2025-10-29T09:01:18.208Z",
     "debug": {
       "strategy": "pulse",
       "raw": "4 290 kr"
@@ -147,7 +147,7 @@
     "amount": 400,
     "currency": "SEK",
     "url": "https://clubs.clubmate.se/vaxjolakers/",
-    "fetched_at": "2025-10-29T08:58:14.089Z",
+    "fetched_at": "2025-10-29T09:01:21.492Z",
     "debug": {
       "strategy": "pulse",
       "raw": "400 kr"
