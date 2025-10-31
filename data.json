@@ -4,7 +4,7 @@
     "amount": 15990,
     "currency": "SEK",
     "url": "https://clubs.clubmate.se/luleahockey/",
-    "fetched_at": "2025-10-31T04:03:07.993Z",
+    "fetched_at": "2025-10-31T05:00:23.029Z",
     "debug": {
       "strategy": "hard:h6.font-bold.animate-pulse:has-text(\" kr\")",
       "raw": "15 990 kr"
@@ -15,7 +15,7 @@
     "amount": 1510,
     "currency": "SEK",
     "url": "https://clubs.clubmate.se/brynas/",
-    "fetched_at": "2025-10-31T04:03:11.192Z",
+    "fetched_at": "2025-10-31T05:00:26.399Z",
     "debug": {
       "strategy": "hard:.animate-pulse:has-text(\" kr\")",
       "raw": "1 510 kr"
@@ -26,7 +26,7 @@
     "amount": 413,
     "currency": "SEK",
     "url": "https://clubs.clubmate.se/difhockey/",
-    "fetched_at": "2025-10-31T04:03:14.179Z",
+    "fetched_at": "2025-10-31T05:00:29.010Z",
     "debug": {
       "strategy": "pulse",
       "raw": "413 kr"
@@ -37,7 +37,7 @@
     "amount": 500,
     "currency": "SEK",
     "url": "https://clubs.clubmate.se/farjestadbk/",
-    "fetched_at": "2025-10-31T04:03:17.335Z",
+    "fetched_at": "2025-10-31T05:00:32.114Z",
     "debug": {
       "strategy": "pulse",
       "raw": "500 kr"
@@ -48,7 +48,7 @@
     "amount": 1290,
     "currency": "SEK",
     "url": "https://clubs.clubmate.se/frolundahockey/",
-    "fetched_at": "2025-10-31T04:03:20.297Z",
+    "fetched_at": "2025-10-31T05:00:36.127Z",
     "debug": {
       "strategy": "pulse",
       "raw": "1 290 kr"
@@ -59,7 +59,7 @@
     "amount": 410,
     "currency": "SEK",
     "url": "https://clubs.clubmate.se/hv71/",
-    "fetched_at": "2025-10-31T04:03:23.682Z",
+    "fetched_at": "2025-10-31T05:00:39.959Z",
     "debug": {
       "strategy": "pulse",
       "raw": "410 kr"
@@ -70,7 +70,7 @@
     "amount": 4470,
     "currency": "SEK",
     "url": "https://clubs.clubmate.se/leksandsif/",
-    "fetched_at": "2025-10-31T04:03:26.711Z",
+    "fetched_at": "2025-10-31T05:00:42.582Z",
     "debug": {
       "strategy": "pulse",
       "raw": "4 470 kr"
@@ -81,7 +81,7 @@
     "amount": 100,
     "currency": "SEK",
     "url": "https://clubs.clubmate.se/lhc/",
-    "fetched_at": "2025-10-31T04:03:29.973Z",
+    "fetched_at": "2025-10-31T05:00:45.845Z",
     "debug": {
       "strategy": "near-label:aktuell\\s+vinstsumma",
       "raw": "100 kr"
@@ -92,7 +92,7 @@
     "amount": 410,
     "currency": "SEK",
     "url": "https://clubs.clubmate.se/malmoredhawks/",
-    "fetched_at": "2025-10-31T04:03:32.835Z",
+    "fetched_at": "2025-10-31T05:00:49.061Z",
     "debug": {
       "strategy": "pulse",
       "raw": "410 kr"
@@ -103,7 +103,7 @@
     "amount": 190,
     "currency": "SEK",
     "url": "https://clubs.clubmate.se/orebrohockey/",
-    "fetched_at": "2025-10-31T04:03:36.056Z",
+    "fetched_at": "2025-10-31T05:00:52.100Z",
     "debug": {
       "strategy": "pulse",
       "raw": "190 kr"
@@ -111,13 +111,13 @@
   },
   {
     "club": "Rögle BK",
-    "amount": 280,
+    "amount": 290,
     "currency": "SEK",
     "url": "https://clubs.clubmate.se/roglebk/",
-    "fetched_at": "2025-10-31T04:03:38.785Z",
+    "fetched_at": "2025-10-31T05:00:55.091Z",
     "debug": {
       "strategy": "hard:h6.font-bold:has-text(\" kr\")",
-      "raw": "280 kr"
+      "raw": "290 kr"
     }
   },
   {
@@ -125,7 +125,7 @@
     "amount": 60,
     "currency": "SEK",
     "url": "https://clubs.clubmate.se/skellefteaaik/",
-    "fetched_at": "2025-10-31T04:03:42.114Z",
+    "fetched_at": "2025-10-31T05:00:57.987Z",
     "debug": {
       "strategy": "pulse",
       "raw": "60 kr"
@@ -136,7 +136,7 @@
     "amount": 4930,
     "currency": "SEK",
     "url": "https://clubs.clubmate.se/timraik/",
-    "fetched_at": "2025-10-31T04:03:44.928Z",
+    "fetched_at": "2025-10-31T05:01:00.787Z",
     "debug": {
       "strategy": "pulse",
       "raw": "4 930 kr"
@@ -147,7 +147,7 @@
     "amount": 460,
     "currency": "SEK",
     "url": "https://clubs.clubmate.se/vaxjolakers/",
-    "fetched_at": "2025-10-31T04:03:48.336Z",
+    "fetched_at": "2025-10-31T05:01:04.277Z",
     "debug": {
       "strategy": "pulse",
       "raw": "460 kr"
