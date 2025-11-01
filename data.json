@@ -4,7 +4,7 @@
     "amount": 10200,
     "currency": "SEK",
     "url": "https://clubs.clubmate.se/luleahockey/",
-    "fetched_at": "2025-11-01T03:59:59.477Z",
+    "fetched_at": "2025-11-01T04:40:35.635Z",
     "debug": {
       "strategy": "body-max",
       "raw": "10\n200 kr"
@@ -15,7 +15,7 @@
     "amount": 450,
     "currency": "SEK",
     "url": "https://clubs.clubmate.se/brynas/",
-    "fetched_at": "2025-11-01T04:00:03.504Z",
+    "fetched_at": "2025-11-01T04:40:38.856Z",
     "debug": {
       "strategy": "hard:.animate-pulse:has-text(\" kr\")",
       "raw": "450 kr"
@@ -23,13 +23,13 @@
   },
   {
     "club": "Djurgårdens IF",
-    "amount": 2888,
+    "amount": 2938,
     "currency": "SEK",
     "url": "https://clubs.clubmate.se/difhockey/",
-    "fetched_at": "2025-11-01T04:00:07.713Z",
+    "fetched_at": "2025-11-01T04:40:42.883Z",
     "debug": {
       "strategy": "pulse",
-      "raw": "2 888 kr"
+      "raw": "2 938 kr"
     }
   },
   {
@@ -37,7 +37,7 @@
     "amount": 590,
     "currency": "SEK",
     "url": "https://clubs.clubmate.se/farjestadbk/",
-    "fetched_at": "2025-11-01T04:00:12.344Z",
+    "fetched_at": "2025-11-01T04:40:45.673Z",
     "debug": {
       "strategy": "pulse",
       "raw": "590 kr"
@@ -45,13 +45,13 @@
   },
   {
     "club": "Frölunda HC",
-    "amount": 3110,
+    "amount": 3160,
     "currency": "SEK",
     "url": "https://clubs.clubmate.se/frolundahockey/",
-    "fetched_at": "2025-11-01T04:00:16.594Z",
+    "fetched_at": "2025-11-01T04:40:49.049Z",
     "debug": {
       "strategy": "pulse",
-      "raw": "3 110 kr"
+      "raw": "3 160 kr"
     }
   },
   {
@@ -59,7 +59,7 @@
     "amount": 1150,
     "currency": "SEK",
     "url": "https://clubs.clubmate.se/hv71/",
-    "fetched_at": "2025-11-01T04:00:20.001Z",
+    "fetched_at": "2025-11-01T04:40:51.751Z",
     "debug": {
       "strategy": "pulse",
       "raw": "1 150 kr"
@@ -67,13 +67,13 @@
   },
   {
     "club": "Leksands IF",
-    "amount": 7690,
+    "amount": 8030,
     "currency": "SEK",
     "url": "https://clubs.clubmate.se/leksandsif/",
-    "fetched_at": "2025-11-01T04:00:23.376Z",
+    "fetched_at": "2025-11-01T04:40:55.473Z",
     "debug": {
       "strategy": "pulse",
-      "raw": "7 690 kr"
+      "raw": "8 030 kr"
     }
   },
   {
@@ -81,7 +81,7 @@
     "amount": 160,
     "currency": "SEK",
     "url": "https://clubs.clubmate.se/lhc/",
-    "fetched_at": "2025-11-01T04:00:26.528Z",
+    "fetched_at": "2025-11-01T04:40:59.047Z",
     "debug": {
       "strategy": "pulse",
       "raw": "160 kr"
@@ -89,24 +89,24 @@
   },
   {
     "club": "IF Malmö Redhawks",
-    "amount": 960,
+    "amount": 1010,
     "currency": "SEK",
     "url": "https://clubs.clubmate.se/malmoredhawks/",
-    "fetched_at": "2025-11-01T04:00:29.349Z",
+    "fetched_at": "2025-11-01T04:41:02.291Z",
     "debug": {
       "strategy": "pulse",
-      "raw": "960 kr"
+      "raw": "1 010 kr"
     }
   },
   {
     "club": "Örebro HK",
-    "amount": 2910,
+    "amount": 2960,
     "currency": "SEK",
     "url": "https://clubs.clubmate.se/orebrohockey/",
-    "fetched_at": "2025-11-01T04:00:33.522Z",
+    "fetched_at": "2025-11-01T04:41:05.681Z",
     "debug": {
       "strategy": "pulse",
-      "raw": "2 910 kr"
+      "raw": "2 960 kr"
     }
   },
   {
@@ -114,7 +114,7 @@
     "amount": 330,
     "currency": "SEK",
     "url": "https://clubs.clubmate.se/roglebk/",
-    "fetched_at": "2025-11-01T04:00:37.121Z",
+    "fetched_at": "2025-11-01T04:41:09.002Z",
     "debug": {
       "strategy": "hard:h6.font-bold:has-text(\" kr\")",
       "raw": "330 kr"
@@ -125,7 +125,7 @@
     "amount": 310,
     "currency": "SEK",
     "url": "https://clubs.clubmate.se/skellefteaaik/",
-    "fetched_at": "2025-11-01T04:00:40.445Z",
+    "fetched_at": "2025-11-01T04:41:12.176Z",
     "debug": {
       "strategy": "pulse",
       "raw": "310 kr"
@@ -133,24 +133,24 @@
   },
   {
     "club": "Timrå IK",
-    "amount": 8750,
+    "amount": 8800,
     "currency": "SEK",
     "url": "https://clubs.clubmate.se/timraik/",
-    "fetched_at": "2025-11-01T04:00:43.574Z",
+    "fetched_at": "2025-11-01T04:41:15.682Z",
     "debug": {
       "strategy": "pulse",
-      "raw": "8 750 kr"
+      "raw": "8 800 kr"
     }
   },
   {
     "club": "Växjö Lakers HC",
-    "amount": 2960,
+    "amount": 3010,
     "currency": "SEK",
     "url": "https://clubs.clubmate.se/vaxjolakers/",
-    "fetched_at": "2025-11-01T04:00:46.802Z",
+    "fetched_at": "2025-11-01T04:41:19.001Z",
     "debug": {
       "strategy": "pulse",
-      "raw": "2 960 kr"
+      "raw": "3 010 kr"
     }
   }
 ]
